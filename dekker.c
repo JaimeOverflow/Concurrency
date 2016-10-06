@@ -1,3 +1,35 @@
+/*
+			Autors
+			
+			Juanmi Forteza Fuster & Jaume Crespí Valero
+
+			Explicació:
+
+	Hem fet el primer intent de l'algorisme de Dekker, a cada procés només entrarà
+	dins la secció crítica quan sigui el seu torn (turno). En cas de que no sigui 
+	el seu torn, esperara dins un bucle fins que sigui el seu torn per 
+	entrar dins la secció crítica. Quan un procés acaba la secció crítica asignarà
+	el torn al següent procés.
+
+	Amb aquesta implementació podem asegurar que es faran totes les operacions 
+	pero tenim diversos desventatges:
+
+	- Es que es pot produir
+	espera infinita, a on un procés es queda infinitament esperant el seu torn.
+
+	- Tampoc si un procés acaba dins la SC i vol tornar a entrar, aquest no podrà perque
+	haurà d'esperar que l'altre procés entri i acabi la SC.
+
+	- Sense suposicions de velocitat relativa. Perquè hem de suposar que anam alternant
+	entre els dos procesos.
+
+	- Es molt fàcil fer que falli. Fent que cada fil faci un nombre diferent d'operacions.
+
+	- El temps d'execusió es molt lent degut a que cada procés fa polling esperant es seu torn.
+
+*/
+
+
 #include <pthread.h>
 #include <stdio.h>
 #include <stdlib.h>
